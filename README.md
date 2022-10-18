@@ -35,3 +35,19 @@ module.exports = {
 };
 
 ```
+
+### Git
+
+I forgot to include a .gitignore file and committed the node_modules directory. Fix by creating a .gitignore file:
+
+```
+touch .gitignore
+```
+
+Then add node_modules to that file and commit those changes.
+
+Next, remove node_modules from git's index:
+
+```
+git rm -r --cached node_modules
+```
