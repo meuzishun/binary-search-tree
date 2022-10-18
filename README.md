@@ -51,3 +51,6 @@ Next, remove node_modules from git's index:
 ```
 git rm -r --cached node_modules
 ```
+
+Commit and push.
+(source: https://dev.to/momentum/what-to-do-if-you-accidentally-committed-your-nodemodules-323o)
