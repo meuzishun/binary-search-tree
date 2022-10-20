@@ -53,13 +53,15 @@ export function createNode(value) {
     };
   }
 
-  return Object.assign(
-    {},
-    getValueMethod(node),
-    setValueMethod(node),
-    getLeftMethod(node),
-    setLeftMethod(node),
-    getRightMethod(node),
-    setRightMethod(node)
+  return Object.freeze(
+    Object.assign(
+      {},
+      getValueMethod(node),
+      setValueMethod(node),
+      getLeftMethod(node),
+      setLeftMethod(node),
+      getRightMethod(node),
+      setRightMethod(node)
+    )
   );
 }
