@@ -54,3 +54,67 @@ git rm -r --cached node_modules
 
 Commit and push.
 (source: https://dev.to/momentum/what-to-do-if-you-accidentally-committed-your-nodemodules-323o)
+
+### Creating the Node Factory
+
+Test for: methods existing and working, properties are private and throw error when directly altered.
+
+Store the node object and functions that act on that object inside the main function.
+
+```javascript
+export function createNode(value) {
+  const node = {
+    value: value,
+    left: null,
+    right: null,
+  };
+
+  function getValueMethod(node) {
+    return {
+      getValue() {
+        return node.value;
+      },
+    };
+  }
+
+  function setValueMethod(node) {
+    return {
+      setValue(value) {
+        node.value = value;
+      },
+    };
+  }
+
+  //etc.
+}
+```
+
+Returning Object.assign with an empty object and function calls that return the desired methods creates the closure needed to make properties private.
+
+```javascript
+Object.assign(
+  {},
+  getValueMethod(node),
+  setValueMethod(node),
+  getLeftMethod(node),
+  setLeftMethod(node),
+  getRightMethod(node),
+  setRightMethod(node)
+);
+```
+
+Encasing all that in Object.freeze disallows any alteration.
+
+```javascript
+Object.freeze(
+  Object.assign(
+    {},
+    getValueMethod(node),
+    setValueMethod(node),
+    getLeftMethod(node),
+    setLeftMethod(node),
+    getRightMethod(node),
+    setRightMethod(node)
+  )
+);
+```
