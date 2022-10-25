@@ -29,18 +29,18 @@ export function createTree(arr) {
 
   const sorted = mergeSort(removeDuplicates(arr));
 
-  function buildTree(arr, start, end) {
-    if (start > end) {
+  function buildTree(arr) {
+    if (arr.length < 1) {
       return null;
     }
-    const mid = parseInt((start + end) / 2);
+    const mid = parseInt(arr.length / 2);
     const node = createNode(arr[mid]);
-    node.setLeftNode(buildTree(arr, start, mid - 1));
-    node.setRightNode(buildTree(arr, mid + 1, end));
+    node.setLeftNode(buildTree(arr.slice(0, mid)));
+    node.setRightNode(buildTree(arr.slice(mid + 1)));
     return node;
   }
 
-  let root = buildTree(sorted, 0, sorted.length - 1);
+  let root = buildTree(sorted);
 
   function getRootMethod(root) {
     return {
