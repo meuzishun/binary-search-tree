@@ -72,6 +72,22 @@ export function createTree(arr) {
     };
   }
 
+  function findMethod() {
+    return {
+      find(node, value) {
+        if (node === null || node.getValue() === value) {
+          return node;
+        }
+
+        if (node.getValue() < value) {
+          return this.find(node.getRightNode(), value);
+        }
+
+        return this.find(node.getLeftNode(), value);
+      },
+    };
+  }
+
   function insertMethod() {
     return {
       insert() {},
@@ -83,6 +99,7 @@ export function createTree(arr) {
       {},
       getRootMethod(root),
       prettyPrintMethod(root),
+      findMethod(),
       insertMethod()
     )
   );
