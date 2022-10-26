@@ -72,7 +72,18 @@ export function createTree(arr) {
     };
   }
 
+  function insertMethod() {
+    return {
+      insert() {},
+    };
+  }
+
   return Object.freeze(
-    Object.assign({}, getRootMethod(root), prettyPrintMethod(root))
+    Object.assign(
+      {},
+      getRootMethod(root),
+      prettyPrintMethod(root),
+      insertMethod()
+    )
   );
 }
