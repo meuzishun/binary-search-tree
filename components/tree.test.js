@@ -65,3 +65,20 @@ test('Insert method can add a node to the tree', () => {
   testTree.insert(21);
   expect(testTree.find(21)).not.toBe(null);
 });
+
+test('Insert method can add a node with the correct value to the tree', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  testTree.insert(21);
+  expect(testTree.find(21).getValue()).toBe(21);
+});
+
+test('Inserting a value that is already present does not throw an error', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(() => {
+    testTree.insert(23);
+  }).not.toThrow();
+});
