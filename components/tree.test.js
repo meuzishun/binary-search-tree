@@ -58,4 +58,10 @@ test('Tree has an insert method', () => {
   }).not.toThrow();
 });
 
-test('', () => {});
+test('Insert method can add a node to the tree', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  testTree.insert(21);
+  expect(testTree.find(testTree.getRoot(), 21)).not.toBe(null);
+});

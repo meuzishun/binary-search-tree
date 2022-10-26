@@ -90,7 +90,19 @@ export function createTree(arr) {
 
   function insertMethod() {
     return {
-      insert() {},
+      insert(value, node = root) {
+        if (node === null) {
+          return createNode(value);
+        }
+
+        if (value < node.getValue()) {
+          node.setLeftNode(this.insert(value, node.getLeftNode()));
+        } else if (value > node.getValue()) {
+          node.setRightNode(this.insert(value, node.getRightNode()));
+        }
+
+        return node;
+      },
     };
   }
 
