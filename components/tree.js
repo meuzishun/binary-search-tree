@@ -74,16 +74,16 @@ export function createTree(arr) {
 
   function findMethod() {
     return {
-      find(node, value) {
+      find(value, node = root) {
         if (node === null || node.getValue() === value) {
           return node;
         }
 
         if (node.getValue() < value) {
-          return this.find(node.getRightNode(), value);
+          return this.find(value, node.getRightNode());
         }
 
-        return this.find(node.getLeftNode(), value);
+        return this.find(value, node.getLeftNode());
       },
     };
   }

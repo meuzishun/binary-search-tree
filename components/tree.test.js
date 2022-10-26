@@ -20,7 +20,7 @@ test('Tree has a find method', () => {
     1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
   ]);
   expect(() => {
-    testTree.find(testTree.getRoot(), 23);
+    testTree.find(23);
   }).not.toThrow();
 });
 
@@ -28,7 +28,7 @@ test('The find method returns null when value is not present', () => {
   const testTree = createTree([
     1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
   ]);
-  const foundNode = testTree.find(testTree.getRoot(), 21);
+  const foundNode = testTree.find(21);
   expect(foundNode).toBe(null);
 });
 
@@ -36,7 +36,7 @@ test('The find method does not return null when value is present', () => {
   const testTree = createTree([
     1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
   ]);
-  const foundNode = testTree.find(testTree.getRoot(), 23);
+  const foundNode = testTree.find(23);
   expect(foundNode).not.toBe(null);
 });
 
@@ -44,7 +44,7 @@ test('The find method returns the node with the searched value if present', () =
   const testTree = createTree([
     1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
   ]);
-  const foundNode = testTree.find(testTree.getRoot(), 23);
+  const foundNode = testTree.find(23);
   expect(foundNode.getValue()).toBe(23);
 });
 
@@ -63,5 +63,5 @@ test('Insert method can add a node to the tree', () => {
     1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
   ]);
   testTree.insert(21);
-  expect(testTree.find(testTree.getRoot(), 21)).not.toBe(null);
+  expect(testTree.find(21)).not.toBe(null);
 });
