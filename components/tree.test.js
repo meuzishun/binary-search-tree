@@ -109,3 +109,25 @@ test('deleted node is replaced by the appropriate node', () => {
   testTree.deleteValue(4);
   expect(testTree.getRoot().getLeftNode().getValue()).toBe(5);
 });
+
+test('deleted node has the same left child as replacing node', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  const fourNode = testTree.find(4);
+  const leftNodeValue = fourNode.getLeftNode().getValue();
+  testTree.deleteValue(4);
+  const newNode = testTree.getRoot().getLeftNode();
+  expect(newNode.getLeftNode().getValue() === leftNodeValue).toBeTruthy();
+});
+
+test('deleted node has the same right child as replacing node', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  const fourNode = testTree.find(4);
+  const rightNodeValue = fourNode.getRightNode().getValue();
+  testTree.deleteValue(4);
+  const newNode = testTree.getRoot().getLeftNode();
+  expect(newNode.getRightNode().getValue() === rightNodeValue).toBeTruthy();
+});
