@@ -82,3 +82,30 @@ test('Inserting a value that is already present does not throw an error', () => 
     testTree.insert(23);
   }).not.toThrow();
 });
+
+//* delete method tests
+test('Tree has a deleteValue method', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(() => {
+    testTree.deleteValue();
+  }).not.toThrow();
+});
+
+test('delete method causes find method to return null', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  testTree.deleteValue(23);
+  const node = testTree.find(23);
+  expect(node).toBe(null);
+});
+
+test('deleted node is replaced by the appropriate node', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  testTree.deleteValue(4);
+  expect(testTree.getRoot().getLeftNode().getValue()).toBe(5);
+});

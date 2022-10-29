@@ -106,13 +106,62 @@ export function createTree(arr) {
     };
   }
 
+  function deleteMethod() {
+    return {
+      deleteValue(value) {
+        root = deleteRec(value, root);
+      },
+    };
+  }
+
+  function minValue(node) {
+    let minv = node.getValue();
+    while (node.getLeftNode() !== null) {
+      minv = node.getLeftNode().getValue();
+      node = node.getLeftNode();
+    }
+    return minv;
+  }
+
+  function deleteRec(value, node) {
+    if (node === null) {
+      return node;
+    }
+
+    if (value < node.getValue()) {
+      node.setLeftNode(deleteRec(value, node.getLeftNode()));
+    }
+
+    if (value > node.getValue()) {
+      node.setRightNode(deleteRec(value, node.getRightNode()));
+    }
+
+    if (value === node.getValue()) {
+      if (node.getLeftNode() === null) {
+        return node.getRightNode();
+      }
+
+      if (node.getRightNode() === null) {
+        return node.getLeftNode();
+      }
+
+      node.setValue(minValue(node.getRightNode()));
+      node
+        .getRightNode()
+        .setValue(deleteRec(node.getValue(), node.getRightNode()).getValue());
+    }
+
+    return node;
+  }
+
   return Object.freeze(
     Object.assign(
       {},
       getRootMethod(root),
       prettyPrintMethod(root),
       findMethod(),
-      insertMethod()
+      insertMethod(),
+      deleteMethod()
     )
   );
 }
