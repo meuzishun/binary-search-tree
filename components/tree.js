@@ -154,6 +154,43 @@ export function createTree(arr) {
     return node;
   }
 
+  function levelOrderMethod() {
+    return {
+      levelOrder(callback) {
+        if (root === null) {
+          return;
+        }
+
+        const values = [];
+        const queue = [];
+
+        queue.push(root);
+
+        while (queue.length > 0) {
+          const node = queue.shift();
+
+          if (callback) {
+            callback(node);
+          }
+
+          if (!callback) {
+            values.push(node.getValue());
+          }
+
+          if (node.getLeftNode() !== null) {
+            queue.push(node.getLeftNode());
+          }
+
+          if (node.getRightNode() !== null) {
+            queue.push(node.getRightNode());
+          }
+        }
+
+        return values;
+      },
+    };
+  }
+
   return Object.freeze(
     Object.assign(
       {},
@@ -161,7 +198,8 @@ export function createTree(arr) {
       prettyPrintMethod(root),
       findMethod(),
       insertMethod(),
-      deleteMethod()
+      deleteMethod(),
+      levelOrderMethod()
     )
   );
 }

@@ -131,3 +131,33 @@ test('deleted node has the same right child as replacing node', () => {
   const newNode = testTree.getRoot().getLeftNode();
   expect(newNode.getRightNode().getValue() === rightNodeValue).toBeTruthy();
 });
+
+//* levelOrder tests
+test('Tree has a levelOrder method', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(() => {
+    testTree.levelOrder();
+  }).not.toThrow();
+});
+
+test('levelOrder returns breadth-first order to array when no callback is specified', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  const breadth = testTree.levelOrder();
+  expect(breadth.toString()).toBe('8,4,67,3,7,23,6345,1,5,9,324');
+});
+
+test('levelOrder calls function on each node in breadth-first order when callback is specified', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  const breadth = [];
+  function pushToArray(node) {
+    breadth.push(node.getValue());
+  }
+  testTree.levelOrder(pushToArray);
+  expect(breadth.toString()).toBe('8,4,67,3,7,23,6345,1,5,9,324');
+});
