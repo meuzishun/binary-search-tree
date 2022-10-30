@@ -169,3 +169,42 @@ function buildTree(arr) {
 
 let root = buildTree(sorted);
 ```
+
+### Breadth First Traversal
+
+The trick here is to use a queue to store the left and right nodes (if present) before moving down a level:
+
+```javascript
+levelOrder(callback) {
+  if (root === null) {
+    return;
+  }
+
+  const values = [];
+  const queue = [];
+
+  queue.push(root);
+
+  while (queue.length > 0) {
+    const node = queue.shift();
+
+    if (callback) {
+      callback(node);
+    }
+
+    if (!callback) {
+      values.push(node.getValue());
+    }
+
+    if (node.getLeftNode() !== null) {
+      queue.push(node.getLeftNode());
+    }
+
+    if (node.getRightNode() !== null) {
+      queue.push(node.getRightNode());
+    }
+  }
+
+  return values;
+}
+```
