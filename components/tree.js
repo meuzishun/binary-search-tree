@@ -191,6 +191,26 @@ export function createTree(arr) {
     };
   }
 
+  function inorderMethod() {
+    return {
+      inorder(callback) {
+        const values = [];
+
+        function inorderRec(node) {
+          if (node === null) {
+            return;
+          }
+          inorderRec(node.getLeftNode());
+          callback ? callback(node) : values.push(node.getValue());
+          inorderRec(node.getRightNode());
+        }
+
+        inorderRec(root);
+        return values;
+      },
+    };
+  }
+
   return Object.freeze(
     Object.assign(
       {},
@@ -199,7 +219,8 @@ export function createTree(arr) {
       findMethod(),
       insertMethod(),
       deleteMethod(),
-      levelOrderMethod()
+      levelOrderMethod(),
+      inorderMethod()
     )
   );
 }

@@ -161,3 +161,37 @@ test('levelOrder calls function on each node in breadth-first order when callbac
   testTree.levelOrder(pushToArray);
   expect(breadth.toString()).toBe('8,4,67,3,7,23,6345,1,5,9,324');
 });
+
+//* inorder tests
+test('Tree has a inorder method', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(() => {
+    testTree.inorder();
+  }).not.toThrow();
+});
+
+test('inorder returns depth-first order to array when no callback is specified', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  const breadth = testTree.inorder();
+  expect(breadth.toString()).toBe('1,3,4,5,7,8,9,23,67,324,6345');
+});
+
+test('inorder calls function on each node in breadth-first order when callback is specified', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  const breadth = [];
+  function pushToArray(node) {
+    breadth.push(node.getValue());
+  }
+  testTree.inorder(pushToArray);
+  expect(breadth.toString()).toBe('1,3,4,5,7,8,9,23,67,324,6345');
+});
+
+//* preorder tests
+
+//* postorder tests
