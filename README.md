@@ -170,7 +170,7 @@ function buildTree(arr) {
 let root = buildTree(sorted);
 ```
 
-### Breadth First Traversal
+### Breadth-first Traversal
 
 The trick here is to use a queue to store the left and right nodes (if present) before moving down a level:
 
@@ -205,6 +205,30 @@ levelOrder(callback) {
     }
   }
 
+  return values;
+}
+```
+
+### Depth-first Traversal
+
+Recursion is helpful for all versions (inorder, preorder, postorder). I am not sure about declaring an array if a callback is provided:
+
+```javascript
+inorder(callback) {
+  const values = [];
+
+  function inorderRec(node) {
+    if (node === null) {
+      return;
+    }
+
+    // Change the order of these three lines for preorder and postorder
+    inorderRec(node.getLeftNode());
+    callback ? callback(node) : values.push(node.getValue());
+    inorderRec(node.getRightNode());
+  }
+
+  inorderRec(root);
   return values;
 }
 ```
