@@ -223,3 +223,31 @@ test('preorder calls function on each node in depth-first order when callback is
 });
 
 //* postorder tests
+test('Tree has a postorder method', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(() => {
+    testTree.postorder();
+  }).not.toThrow();
+});
+
+test('postorder returns depth-first order to array when no callback is specified', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  const depth = testTree.postorder();
+  expect(depth.toString()).toBe('1,3,5,7,4,9,23,324,6345,67,8');
+});
+
+test('postorder calls function on each node in depth-first order when callback is specified', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  const depth = [];
+  function pushToArray(node) {
+    depth.push(node.getValue());
+  }
+  testTree.postorder(pushToArray);
+  expect(depth.toString()).toBe('1,3,5,7,4,9,23,324,6345,67,8');
+});
