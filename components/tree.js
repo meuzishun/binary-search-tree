@@ -211,6 +211,26 @@ export function createTree(arr) {
     };
   }
 
+  function preorderMethod() {
+    return {
+      preorder(callback) {
+        const values = [];
+
+        function preorderRec(node) {
+          if (node === null) {
+            return;
+          }
+          callback ? callback(node) : values.push(node.getValue());
+          preorderRec(node.getLeftNode());
+          preorderRec(node.getRightNode());
+        }
+
+        preorderRec(root);
+        return values;
+      },
+    };
+  }
+
   return Object.freeze(
     Object.assign(
       {},
@@ -220,7 +240,8 @@ export function createTree(arr) {
       insertMethod(),
       deleteMethod(),
       levelOrderMethod(),
-      inorderMethod()
+      inorderMethod(),
+      preorderMethod()
     )
   );
 }
