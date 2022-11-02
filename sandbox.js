@@ -5,6 +5,11 @@ export function add(num1, num2) {
 }
 
 // const testTree = createTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+// testTree.height();
+// testTree.insert(111);
+// testTree.insert(114);
+// testTree.insert(124);
+// testTree.insert(127);
 // testTree.prettyPrint();
 // console.log(testTree.inorder());
 // function log(node) {

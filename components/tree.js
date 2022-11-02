@@ -251,6 +251,25 @@ export function createTree(arr) {
     };
   }
 
+  function heightMethod() {
+    return {
+      height() {
+        function heightRec(node) {
+          if (node === null) {
+            return 0;
+          }
+
+          const leftTree = heightRec(node.getLeftNode());
+          const rightTree = heightRec(node.getRightNode());
+
+          return Math.max(leftTree, rightTree) + 1;
+        }
+
+        return heightRec(root);
+      },
+    };
+  }
+
   return Object.freeze(
     Object.assign(
       {},
@@ -262,7 +281,8 @@ export function createTree(arr) {
       levelOrderMethod(),
       inorderMethod(),
       preorderMethod(),
-      postorderMethod()
+      postorderMethod(),
+      heightMethod()
     )
   );
 }
