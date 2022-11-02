@@ -255,7 +255,7 @@ export function createTree(arr) {
     return {
       height(node = root) {
         if (node === null) {
-          return 0;
+          return -1;
         }
 
         return (

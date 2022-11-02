@@ -252,6 +252,7 @@ test('postorder calls function on each node in depth-first order when callback i
   expect(depth.toString()).toBe('1,3,5,7,4,9,23,324,6345,67,8');
 });
 
+//* height tests
 test('Tree has a height method', () => {
   const testTree = createTree([
     1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
@@ -265,17 +266,25 @@ test('Calling the height method on a tree returns the correct value', () => {
   const testTree = createTree([
     1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
   ]);
-  expect(testTree.height()).toBe(4);
+  expect(testTree.height()).toBe(3);
 });
 
 test('Inserting nodes that change the height alter the return value of height', () => {
   const testTree = createTree([
     1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
   ]);
-  expect(testTree.height()).toBe(4);
+  expect(testTree.height()).toBe(3);
   testTree.insert(111);
   testTree.insert(114);
   testTree.insert(124);
   testTree.insert(127);
-  expect(testTree.height()).toBe(8);
+  expect(testTree.height()).toBe(7);
+});
+
+test('Checking for height of a node other than the root return correct value', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  const three = testTree.find(3);
+  expect(testTree.height(three)).toBe(1);
 });
