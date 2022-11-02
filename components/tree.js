@@ -253,19 +253,17 @@ export function createTree(arr) {
 
   function heightMethod() {
     return {
-      height() {
-        function heightRec(node) {
-          if (node === null) {
-            return 0;
-          }
-
-          const leftTree = heightRec(node.getLeftNode());
-          const rightTree = heightRec(node.getRightNode());
-
-          return Math.max(leftTree, rightTree) + 1;
+      height(node = root) {
+        if (node === null) {
+          return 0;
         }
 
-        return heightRec(root);
+        return (
+          Math.max(
+            this.height(node.getLeftNode()),
+            this.height(node.getRightNode())
+          ) + 1
+        );
       },
     };
   }
