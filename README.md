@@ -232,3 +232,22 @@ inorder(callback) {
   return values;
 }
 ```
+
+### Calculating Height
+
+Got into a little trouble here... recursion is used but remember to add 1 to the return value:
+
+```javascript
+height(node = root) {
+  if (node === null) {
+    return 0;
+  }
+
+  return (
+    Math.max(
+      this.height(node.getLeftNode()),
+      this.height(node.getRightNode())
+    ) + 1
+  );
+},
+```
