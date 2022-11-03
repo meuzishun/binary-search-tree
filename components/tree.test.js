@@ -299,7 +299,7 @@ test('Tree has a depth method', () => {
   }).not.toThrow();
 });
 
-test('Root has a depth of negative 1', () => {
+test('Root has a depth of zero', () => {
   const testTree = createTree([
     1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
   ]);
