@@ -288,3 +288,37 @@ test('Checking for height of a node other than the root return correct value', (
   const three = testTree.find(3);
   expect(testTree.height(three)).toBe(1);
 });
+
+//* depth tests
+test('Tree has a depth method', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(() => {
+    testTree.depth(5);
+  }).not.toThrow();
+});
+
+test('Root has a depth of negative 1', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(testTree.depth(8)).toBe(0);
+});
+
+test('Node has correct depth value', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(testTree.depth(3)).toBe(2);
+});
+
+test('Inserted node has correct depth value', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  testTree.insert(1000);
+  expect(testTree.depth(1000)).toBe(4);
+});
+
+// test.skip('', () => {});

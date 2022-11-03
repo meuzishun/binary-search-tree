@@ -268,6 +268,28 @@ export function createTree(arr) {
     };
   }
 
+  function depthMethod() {
+    return {
+      depth(value, node = root) {
+        if (node === null) {
+          return -1;
+        }
+
+        let dist = -1;
+
+        if (
+          node.getValue() === value ||
+          (dist = this.depth(value, node.getLeftNode())) >= 0 ||
+          (dist = this.depth(value, node.getRightNode())) >= 0
+        ) {
+          return dist + 1;
+        }
+
+        return dist;
+      },
+    };
+  }
+
   return Object.freeze(
     Object.assign(
       {},
@@ -280,7 +302,8 @@ export function createTree(arr) {
       inorderMethod(),
       preorderMethod(),
       postorderMethod(),
-      heightMethod()
+      heightMethod(),
+      depthMethod()
     )
   );
 }
