@@ -275,3 +275,23 @@ depth(value, node = root) {
   return dist;
 }
 ```
+
+### Checking for Balance
+
+Using the height method inside this recursion method...
+
+```javascript
+isBalanced(node = root) {
+  if (node === null) {
+    return true;
+  }
+
+  return (
+    Math.abs(
+      this.height(node.getLeftNode()) - this.height(node.getRightNode())
+    ) <= 1 &&
+    this.isBalanced(node.getLeftNode()) &&
+    this.isBalanced(node.getRightNode())
+  );
+}
+```
