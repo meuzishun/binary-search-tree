@@ -1,9 +1,5 @@
 import { createTree } from './components/tree.js';
 
-export function add(num1, num2) {
-  return num1 + num2;
-}
-
 function randomArray(len) {
   const arr = [];
   while (arr.length < len) {
@@ -14,7 +10,6 @@ function randomArray(len) {
   return arr.sort((a, b) => a - b);
 }
 
-// console.log(randomArray(10));
 console.group();
 console.log('=====================================================');
 const testTree = createTree(randomArray(20));
