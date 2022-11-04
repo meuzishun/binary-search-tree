@@ -309,3 +309,13 @@ rebalance() {
 ```
 
 I think this will take care of everything... but we shall see.
+
+Ok, close... here is the actual code (refactored):
+
+```javascript
+rebalance() {
+  root = buildTree(this.inorder());
+}
+```
+
+We also had to change the getRootMethod and the prettyPrintMethod so they no longer took root as an argument. That way we can adjust the root of the tree after rebalancing.
