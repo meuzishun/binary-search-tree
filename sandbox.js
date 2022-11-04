@@ -5,6 +5,7 @@ export function add(num1, num2) {
 }
 
 // const testTree = createTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+// testTree.isBalanced();
 // const three = testTree.find(3);
 // console.log(testTree.height(three));
 // testTree.height();

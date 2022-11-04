@@ -321,4 +321,30 @@ test('Inserted node has correct depth value', () => {
   expect(testTree.depth(1000)).toBe(4);
 });
 
+//* isBalanced
+test('Tree has an isBalanced method', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(() => {
+    testTree.isBalanced();
+  }).not.toThrow();
+});
+
+test('isBalanced returns true when tree is balanced', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(testTree.isBalanced()).toBe(true);
+});
+
+test('isBalanced returns false when tree is not balanced', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  testTree.insert(1000);
+  testTree.insert(1020);
+  expect(testTree.isBalanced()).toBe(false);
+});
+
 // test.skip('', () => {});

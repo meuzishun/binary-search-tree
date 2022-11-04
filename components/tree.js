@@ -290,6 +290,24 @@ export function createTree(arr) {
     };
   }
 
+  function isBalancedMethod() {
+    return {
+      isBalanced(node = root) {
+        if (node === null) {
+          return true;
+        }
+
+        return (
+          Math.abs(
+            this.height(node.getLeftNode()) - this.height(node.getRightNode())
+          ) <= 1 &&
+          this.isBalanced(node.getLeftNode()) &&
+          this.isBalanced(node.getRightNode())
+        );
+      },
+    };
+  }
+
   return Object.freeze(
     Object.assign(
       {},
@@ -303,7 +321,8 @@ export function createTree(arr) {
       preorderMethod(),
       postorderMethod(),
       heightMethod(),
-      depthMethod()
+      depthMethod(),
+      isBalancedMethod()
     )
   );
 }
