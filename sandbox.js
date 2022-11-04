@@ -4,34 +4,42 @@ export function add(num1, num2) {
   return num1 + num2;
 }
 
-// const testTree = createTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
-// console.log(testTree.getRoot().getValue());
-// testTree.prettyPrint();
-// console.assert(testTree.isBalanced(), 'Tree is not balanced');
-// const three = testTree.find(3);
-// console.log(testTree.height(three));
-// testTree.height();
-// testTree.insert(111);
-// testTree.insert(114);
-// testTree.insert(124);
-// console.log(testTree.getRoot().getValue());
-// testTree.prettyPrint();
-// console.assert(!testTree.isBalanced(), 'Tree is balanced');
-// testTree.rebalance();
-// console.assert(testTree.isBalanced(), 'Tree is not balanced');
-// console.log(testTree.getRoot().getValue());
-// testTree.prettyPrint(testTree.getRoot());
+function randomArray(len) {
+  const arr = [];
+  while (arr.length < len) {
+    const randNum = Math.floor(Math.random() * 100);
+    if (arr.includes(randNum)) continue;
+    arr.push(randNum);
+  }
+  return arr.sort((a, b) => a - b);
+}
 
-// testTree.insert(127);
-// testTree.prettyPrint();
-// console.log(testTree.inorder());
-// function log(node) {
-//   console.log(node.getValue());
-// }
-// testTree.levelOrder(log);
-// testTree.deleteValue(4);
-// console.log('');
-// console.log('==============================================');
-// console.log('');
-// testTree.prettyPrint();
-// console.log(testTree.getRoot().getLeftNode().getRightNode().getValue());
+// console.log(randomArray(10));
+console.group();
+console.log('=====================================================');
+const testTree = createTree(randomArray(20));
+testTree.prettyPrint();
+console.assert(testTree.isBalanced(), 'Tree is not balanced');
+console.log('Pre-order: ', testTree.preorder());
+console.log('Post-order: ', testTree.postorder());
+console.log('In-order: ', testTree.inorder());
+console.groupEnd();
+
+console.group();
+console.log('=====================================================');
+testTree.insert(101);
+testTree.insert(201);
+testTree.insert(301);
+testTree.prettyPrint();
+console.assert(!testTree.isBalanced(), 'Tree is balanced');
+console.groupEnd();
+
+console.group();
+console.log('=====================================================');
+testTree.rebalance();
+testTree.prettyPrint();
+console.assert(testTree.isBalanced(), 'Tree is not balanced');
+console.log('Pre-order: ', testTree.preorder());
+console.log('Post-order: ', testTree.postorder());
+console.log('In-order: ', testTree.inorder());
+console.groupEnd();
