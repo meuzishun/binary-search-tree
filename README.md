@@ -251,3 +251,27 @@ height(node = root) {
   );
 },
 ```
+
+### Calculating Depth
+
+Using recursion with a default parameter value for the input node so when no node is provided, it defaults to the root:
+
+```javascript
+depth(value, node = root) {
+  if (node === null) {
+    return -1;
+  }
+
+  let dist = -1;
+
+  if (
+    node.getValue() === value ||
+    (dist = this.depth(value, node.getLeftNode())) >= 0 ||
+    (dist = this.depth(value, node.getRightNode())) >= 0
+  ) {
+    return dist + 1;
+  }
+
+  return dist;
+}
+```
