@@ -295,3 +295,17 @@ isBalanced(node = root) {
   );
 }
 ```
+
+### Rebalancing
+
+Here are some pseudo code ideas for the rebalance method:
+
+```
+rebalance() {
+  inOrderArray = tree.inorder();
+  newTree = buildTree(inOrderArray);
+  root = newTree.getRoot()
+}
+```
+
+I think this will take care of everything... but we shall see.

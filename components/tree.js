@@ -42,7 +42,7 @@ export function createTree(arr) {
 
   let root = buildTree(sorted);
 
-  function getRootMethod(root) {
+  function getRootMethod() {
     return {
       getRoot() {
         return root;
@@ -50,7 +50,7 @@ export function createTree(arr) {
     };
   }
 
-  function prettyPrintMethod(root) {
+  function prettyPrintMethod() {
     return {
       prettyPrint(node = root, prefix = '', isLeft = true) {
         if (node.getRightNode() !== null) {
@@ -308,11 +308,19 @@ export function createTree(arr) {
     };
   }
 
+  function rebalanceMethod() {
+    return {
+      rebalance() {
+        root = buildTree(this.inorder());
+      },
+    };
+  }
+
   return Object.freeze(
     Object.assign(
       {},
-      getRootMethod(root),
-      prettyPrintMethod(root),
+      getRootMethod(),
+      prettyPrintMethod(),
       findMethod(),
       insertMethod(),
       deleteMethod(),
@@ -322,7 +330,8 @@ export function createTree(arr) {
       postorderMethod(),
       heightMethod(),
       depthMethod(),
-      isBalancedMethod()
+      isBalancedMethod(),
+      rebalanceMethod()
     )
   );
 }

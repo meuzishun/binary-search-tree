@@ -347,4 +347,34 @@ test('isBalanced returns false when tree is not balanced', () => {
   expect(testTree.isBalanced()).toBe(false);
 });
 
-// test.skip('', () => {});
+//* rebalance
+test('Tree has a rebalance method', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(() => {
+    testTree.rebalance();
+  }).not.toThrow();
+});
+
+test('rebalance balances an unbalanced tree', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  testTree.insert(1000);
+  testTree.insert(1020);
+  expect(testTree.isBalanced()).toBe(false);
+  testTree.rebalance();
+  expect(testTree.isBalanced()).toBe(true);
+});
+
+test('rebalance changes the root node', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  testTree.insert(111);
+  testTree.insert(114);
+  testTree.insert(124);
+  testTree.rebalance();
+  expect(testTree.getRoot().getValue()).toBe(23);
+});
