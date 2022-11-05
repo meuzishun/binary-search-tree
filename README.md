@@ -2,6 +2,8 @@
 
 ## To start...
 
+I think there are some setup commands to run but I can't get them to work... I need some help.
+
 ## Development Notes
 
 ### Setting up Node
