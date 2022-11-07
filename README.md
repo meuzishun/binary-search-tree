@@ -2,7 +2,11 @@
 
 ## To start...
 
-I think there are some setup commands to run but I can't get them to work... I need some help.
+After cloning the repository on your machine, run this from the directory:
+
+```
+npm i
+```
 
 ## Development Notes
 
