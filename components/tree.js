@@ -191,6 +191,47 @@ export function createTree(arr) {
     };
   }
 
+  function levelOrderRecMethod() {
+    return {
+      levelOrderRec(callback) {
+        const values = [];
+
+        function height(node) {
+          if (node === null) {
+            return 0;
+          }
+
+          const leftHeight = height(node.getLeftNode());
+          const rightHeight = height(node.getRightNode());
+
+          return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
+        }
+
+        function getCurrentLevelNodes(node, level) {
+          if (node === null) {
+            return;
+          }
+
+          if (level === 1) {
+            callback ? callback(node) : values.push(node.getValue());
+          }
+
+          if (level > 1) {
+            getCurrentLevelNodes(node.getLeftNode(), level - 1);
+            getCurrentLevelNodes(node.getRightNode(), level - 1);
+          }
+        }
+
+        const treeHeight = height(root);
+        for (let i = 1; i <= treeHeight; i++) {
+          getCurrentLevelNodes(root, i);
+        }
+
+        return values;
+      },
+    };
+  }
+
   function inorderMethod() {
     return {
       inorder(callback) {
@@ -331,7 +372,8 @@ export function createTree(arr) {
       heightMethod(),
       depthMethod(),
       isBalancedMethod(),
-      rebalanceMethod()
+      rebalanceMethod(),
+      levelOrderRecMethod()
     )
   );
 }

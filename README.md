@@ -373,3 +373,45 @@ console.log('Post-order: ', testTree.postorder());
 console.log('In-order: ', testTree.inorder());
 console.groupEnd();
 ```
+
+### Level Order Recursion
+
+This was tricky to understand... first we get the height of the whole tree:
+
+```javascript
+function height(node) {
+  if (node === null) {
+    return 0;
+  }
+
+  const leftHeight = height(node.getLeftNode());
+  const rightHeight = height(node.getRightNode());
+
+  return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
+}
+
+const treeHeight = height(root);
+```
+
+Then we loop though each level (counting backward/upside down) until we get to the bottom level of the tree. When we reach the bottom, we either push the values to an array we already created or we use the callback function if it was provided:
+
+```javascript
+for (let i = 1; i <= treeHeight; i++) {
+  getCurrentLevelNodes(root, i);
+}
+
+function getCurrentLevelNodes(node, level) {
+  if (node === null) {
+    return;
+  }
+
+  if (level === 1) {
+    callback ? callback(node) : values.push(node.getValue());
+  }
+
+  if (level > 1) {
+    getCurrentLevelNodes(node.getLeftNode(), level - 1);
+    getCurrentLevelNodes(node.getRightNode(), level - 1);
+  }
+}
+```

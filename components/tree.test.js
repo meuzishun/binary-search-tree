@@ -378,3 +378,33 @@ test('rebalance changes the root node', () => {
   testTree.rebalance();
   expect(testTree.getRoot().getValue()).toBe(23);
 });
+
+//* levelOrderRec tests
+test('Tree has a levelOrderRec method', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  expect(() => {
+    testTree.levelOrderRec();
+  }).not.toThrow();
+});
+
+test('levelOrderRec returns breadth-first order to array when no callback is specified', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  const breadth = testTree.levelOrderRec();
+  expect(breadth.toString()).toBe('8,4,67,3,7,23,6345,1,5,9,324');
+});
+
+test('levelOrderRec calls function on each node in breadth-first order when callback is specified', () => {
+  const testTree = createTree([
+    1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,
+  ]);
+  const breadth = [];
+  function pushToArray(node) {
+    breadth.push(node.getValue());
+  }
+  testTree.levelOrderRec(pushToArray);
+  expect(breadth.toString()).toBe('8,4,67,3,7,23,6345,1,5,9,324');
+});
